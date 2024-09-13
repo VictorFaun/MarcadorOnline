@@ -11,6 +11,11 @@
 <body>
     <div class="fondo">
         <div class="container">
+
+            <div class="logo">
+                <img src="http://localhost:3000/Logo_Trawen.png" />
+            </div>
+
             <div class="marcador">
                 <div class="local">
                     <div class="saqueLocal">
@@ -45,6 +50,7 @@
         const marcadorId = window.location.pathname.split('/').pop();  // Obtener el ID del marcador desde la URL
         const socket = io();  // Conectar a Socket.IO
 
+        const userAgent = navigator.userAgent;
         // Unirse a la sala del marcador específico
         socket.emit('joinMarcador', marcadorId);
 
@@ -61,10 +67,14 @@
             }
 
 
-            if (marcador.modo == 2) {
+            if (marcador.modo == 2 && userAgent.includes("Streamlabs")) {
                 document.querySelector('.container').classList.add('modo2');
             } else {
                 document.querySelector('.container').classList.remove('modo2');
+            }
+
+            if(!userAgent.includes("Streamlabs")){
+                document.querySelector('.container').classList.add('modo3');
             }
 
             // Agregar o quitar la clase 'invert'

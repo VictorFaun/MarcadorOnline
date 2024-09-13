@@ -32,6 +32,22 @@ body {
     /* Elimina el margen por defecto del body */
 }
 
+.container{
+    position: relative;
+}
+
+.logo{
+
+    display:none;
+    position: absolute;
+    top: calc(((100% - 30px)/ 2));
+    left: calc(((100% - 30px)/ 2));
+    z-index: 2;
+    img{
+        width: 30px;
+    }
+}
+
 .fondo {
     background-image: url('./fondo.jpg');
     background-size: cover;
@@ -312,6 +328,136 @@ body {
 
         .setsVisita {
             order: 2;
+        }
+    }
+}
+.modo3 {
+
+    padding: 10px;
+
+    .logo{
+        position: absolute;
+        top: calc(((100% - 10vw)/ 2));
+        left: calc(((100% - 10vw)/ 2));
+        z-index: 2;
+        img{
+            width: 10vw;
+        }
+    }
+    .marcador {
+    }
+
+    .balon {
+        width: 4vw;
+    }
+
+    .local,
+    .visita {
+        width: 49%;
+        position: relative;
+    }
+
+
+
+    .local {
+        order: 0;
+        .saqueLocal {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .equipoLocal {
+            position: absolute;
+            top: 5px;
+            left: 0px;
+            text-align: center;
+            width: 100%;
+            font-size: 4vw;
+        }
+
+        .puntosLocal {
+            width: 100%;
+            font-size: 30vw;
+            .titulo{
+                display: none;
+            }
+        }
+
+        .setsLocal {
+            position: absolute;
+            top: 10px;
+            right: 1vw;
+            font-size: 4vw;
+        }
+    }
+
+    .visita {
+        order: 1;
+
+        .saqueVisita {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .equipoVisita {
+            position: absolute;
+            top: 5px;
+            left: 0px;
+            text-align: center;
+            width: 100%;
+            font-size: 4vw;
+        }
+
+        .puntosVisita {
+            width: 100%;
+            font-size: 30vw;
+            .titulo{
+                display: none;
+            }
+        }
+
+        .setsVisita {
+            position: absolute;
+            top: 10px;
+            left: 1vw;
+            font-size: 4vw;
+        }
+    }
+
+    .invert .local {
+
+        .saqueLocal {
+            right: 10px;
+        }
+
+        .equipoLocal {
+        }
+
+        .puntosLocal {
+        }
+
+        .setsLocal {
+            left: 1vw;
+        }
+    }
+
+    .invert 
+    .visita {
+
+        .saqueVisita {
+            left: 10px;
+        }
+
+        .equipoVisita {
+        }
+
+        .puntosVisita {
+        }
+
+        .setsVisita {
+            right: 1vw;
         }
     }
 }
