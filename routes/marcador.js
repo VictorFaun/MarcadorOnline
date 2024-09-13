@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 
   // POST /configuracion/marcador: Crea o actualiza un marcador
   router.post('/marcador', (req, res) => {
-    let { id, equipoLocal, equipoVisita, estado, puntosLocal, puntosVisita, setsLocal, setsVisita, saque, winLocal, winVisita, invert } = req.body;
+    let { id, equipoLocal, equipoVisita, estado, puntosLocal, puntosVisita, setsLocal, setsVisita, saque, winLocal, winVisita, invert, modo } = req.body;
     if(!id){
         id = generateUniqueId();
     }
@@ -45,6 +45,7 @@ io.on('connection', (socket) => {
       saque,
       winLocal,
       winVisita,
+      modo,
       invert
     };
     // Emitir un evento a través de Socket.IO para actualizar el marcador en tiempo real

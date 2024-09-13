@@ -60,6 +60,13 @@
                 marcadorElement.style.display = 'flex';
             }
 
+
+            if (marcador.modo == 2) {
+                document.querySelector('.container').classList.add('modo2');
+            } else {
+                document.querySelector('.container').classList.remove('modo2');
+            }
+
             // Agregar o quitar la clase 'invert'
             if (marcador.invert) {
                 if (!marcadorElement.classList.contains('invert')) {

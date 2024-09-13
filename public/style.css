@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: 'Yeseva One';
     src: url(./YesevaOne-Regular.ttf);
@@ -9,43 +8,52 @@
     font-family: 'Yeseva One';
     color: white;
 }
+
 @keyframes fadeIn {
     0% {
-      opacity: 0;
-      transform: scale(0.8);
+        opacity: 0;
+        transform: scale(0.8);
     }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  .animated-change {
-    animation: fadeIn 2s ease-in-out;
-  }
 
-  body {
-    background: transparent; /* Hace el fondo del contenido del iframe transparente */
-    margin: 0; /* Elimina el margen por defecto del body */
-  }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animated-change {
+    animation: fadeIn 2s ease-in-out;
+}
+
+body {
+    background: transparent;
+    /* Hace el fondo del contenido del iframe transparente */
+    margin: 0;
+    /* Elimina el margen por defecto del body */
+}
+
 .fondo {
     background-image: url('./fondo.jpg');
-    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-    background-position: center; /* Centra la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover;
+    /* Ajusta la imagen para que cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen en el contenedor */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
     border-radius: 10px;
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.win{
+.win {
     color: #fdd877 !important;
 }
 
-.balon{
+.balon {
     width: 15px;
 }
+
 .marcador {
     display: flex;
     justify-content: space-between;
@@ -74,7 +82,7 @@
 
 
     border-radius: 15px;
-    background-color: rgba(0,0,0,.85);
+    background-color: rgba(0, 0, 0, .85);
 }
 
 
@@ -209,3 +217,101 @@
 }
 
 /* Agregar estilos dinámicos en JavaScript */
+
+.modo2 {
+    .marcador {
+        flex-direction: column;
+    }
+
+    .local,
+    .visita {
+        width: 100%;
+    }
+
+
+
+    .local {
+        order: 0;
+        margin-bottom: 5px;
+        .saqueLocal {
+            order: 0;
+        }
+
+        .equipoLocal {
+            order: 1;
+            text-align: start;
+        }
+
+        .puntosLocal {
+            order: 3;
+        }
+
+        .setsLocal {
+            order: 2;
+        }
+    }
+
+    .visita {
+        order: 1;
+
+        .saqueVisita {
+            order: 0;
+        }
+
+        .equipoVisita {
+            order: 1;
+            text-align: start;
+        }
+
+        .puntosVisita {
+            order: 3;
+        }
+
+        .setsVisita {
+            order: 2;
+        }
+    }
+
+    .invert .local {
+        order: 0;
+
+        .saqueLocal {
+            order: 0;
+        }
+
+        .equipoLocal {
+            order: 1;
+            text-align: start;
+        }
+
+        .puntosLocal {
+            order: 3;
+        }
+
+        .setsLocal {
+            order: 2;
+        }
+    }
+
+    .invert 
+    .visita {
+        order: 1;
+
+        .saqueVisita {
+            order: 0;
+        }
+
+        .equipoVisita {
+            order: 1;
+            text-align: start;
+        }
+
+        .puntosVisita {
+            order: 3;
+        }
+
+        .setsVisita {
+            order: 2;
+        }
+    }
+}
