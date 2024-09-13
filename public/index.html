@@ -13,7 +13,7 @@
         <div class="container">
 
             <div class="logo">
-                <img src="http://localhost:3000/Logo_Trawen.png" />
+                <img src="http://192.168.1.83:3000/Logo_Trawen.png" />
             </div>
 
             <div class="marcador">
@@ -49,8 +49,15 @@
     <script>
         const marcadorId = window.location.pathname.split('/').pop();  // Obtener el ID del marcador desde la URL
         const socket = io();  // Conectar a Socket.IO
-
-        const userAgent = navigator.userAgent;
+        let stream = false;
+        if (navigator.plugins.length > 0) {
+            // Recorre la lista de plugins
+            for (let i = 0; i < navigator.plugins.length; i++) {
+                if(navigator.plugins[i].name == 'PDF Viewer'){
+                    stream =true
+                }
+            }
+        }
         // Unirse a la sala del marcador específico
         socket.emit('joinMarcador', marcadorId);
 
@@ -66,15 +73,16 @@
                 marcadorElement.style.display = 'flex';
             }
 
-
-            if (marcador.modo == 2 && window.top != window.self) {
+            console.log(window)
+            if (marcador.modo == 2 && stream) {
                 document.querySelector('.container').classList.add('modo2');
             } else {
                 document.querySelector('.container').classList.remove('modo2');
             }
 
-            if(window.top == window.self){
+            if(!stream){
                 document.querySelector('.container').classList.add('modo3');
+                document.querySelector('body').style.maxWidth = '100%';
             }
 
             // Agregar o quitar la clase 'invert'

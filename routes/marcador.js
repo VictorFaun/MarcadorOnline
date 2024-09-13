@@ -57,7 +57,6 @@ io.on('connection', (socket) => {
 
   // GET /marcador/:id: Devuelve la página del marcador y se conecta a WebSocket
   router.get('/marcador/:id', (req, res) => {
-    console.log(req)
     res.sendFile(path.join(__dirname, '../public/index.html')); // Enviar la página del marcador
   });
 
