@@ -1,0 +1,211 @@
+
+@font-face {
+    font-family: 'Yeseva One';
+    src: url(./YesevaOne-Regular.ttf);
+    /* Puedes añadir más formatos si es necesario */
+}
+
+* {
+    font-family: 'Yeseva One';
+    color: white;
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .animated-change {
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  body {
+    background: transparent; /* Hace el fondo del contenido del iframe transparente */
+    margin: 0; /* Elimina el margen por defecto del body */
+  }
+.fondo {
+    background-image: url('./fondo.jpg');
+    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.win{
+    color: #fdd877 !important;
+}
+
+.balon{
+    width: 15px;
+}
+.marcador {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    font-size: large;
+    font-weight: bold;
+}
+
+.titulo {
+    position: absolute;
+    top: -6px;
+    width: 100%;
+    text-align: center;
+    font-size: 8px !important;
+}
+
+.local,
+.visita {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 49%;
+    padding-top: 5px;
+    box-sizing: border-box;
+
+
+    border-radius: 15px;
+    background-color: rgba(0,0,0,.85);
+}
+
+
+.local {
+    order: 0;
+    justify-content: start;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    .saqueLocal {
+        order: 0;
+        width: 10%;
+        padding-bottom: 5px;
+    }
+
+    .equipoLocal {
+        order: 1;
+        text-align: start;
+        width: 60%;
+        padding-bottom: 5px;
+    }
+
+    .puntosLocal {
+        order: 3;
+        text-align: center;
+        width: 15%;
+        position: relative;
+    }
+
+    .setsLocal {
+        text-align: center;
+        order: 2;
+        width: 15%;
+        position: relative;
+    }
+}
+
+.visita {
+    order: 1;
+    justify-content: end;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    .saqueVisita {
+        order: 3;
+        width: 10%;
+        padding-bottom: 5px;
+    }
+
+    .equipoVisita {
+        order: 2;
+        width: 60%;
+        text-align: end;
+        padding-bottom: 5px;
+    }
+
+    .puntosVisita {
+        order: 0;
+        text-align: center;
+        width: 15%;
+        position: relative;
+    }
+
+    .setsVisita {
+        order: 1;
+        text-align: center;
+        width: 15%;
+        position: relative;
+    }
+}
+
+.invert .local {
+    order: 1;
+    justify-content: end;
+
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    .saqueLocal {
+        order: 3;
+    }
+
+    .equipoLocal {
+        text-align: end;
+        order: 2;
+    }
+
+    .puntosLocal {
+        order: 0;
+    }
+
+    .setsLocal {
+        order: 1;
+    }
+}
+
+.invert .visita {
+    order: 0;
+    justify-content: start;
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    .saqueVisita {
+        order: 0;
+    }
+
+    .equipoVisita {
+        order: 1;
+        text-align: start;
+    }
+
+    .puntosVisita {
+        order: 3;
+    }
+
+    .setsVisita {
+        order: 2;
+    }
+}
+
+.local p,
+.visita p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.saqueLocal,
+.saqueVisita {
+    display: flex;
+    justify-content: center;
+}
+
+/* Agregar estilos dinámicos en JavaScript */

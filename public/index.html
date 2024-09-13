@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcador Voley</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="fondo">
+        <div class="container">
+            <div class="marcador">
+                <div class="local">
+                    <div class="saqueLocal">
+                        <img class="balon" src="http://localhost:3000/balon.png" />
+                    </div>
+                    <div class="equipoLocal"></div>
+                    <div class="puntosLocal"><label></label>
+                        <p class='titulo'>PUNTOS</p>
+                    </div>
+                    <div class="setsLocal"><label></label>
+                        <p class='titulo'>SETS</p>
+                    </div>
+                </div>
+                <div class="visita">
+                    <div class="saqueVisita">
+                        <img class="balon" src="http://localhost:3000/balon.png" />
+                    </div>
+                    <div class="setsVisita"><label></label>
+                        <p class='titulo'>SETS</p>
+                    </div>
+                    <div class="puntosVisita"><label></label>
+                        <p class='titulo'>PUNTOS</p>
+                    </div>
+                    <div class="equipoVisita"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.min.js"></script>
+    <script>
+        const marcadorId = window.location.pathname.split('/').pop();  // Obtener el ID del marcador desde la URL
+        const socket = io();  // Conectar a Socket.IO
+
+        // Unirse a la sala del marcador específico
+        socket.emit('joinMarcador', marcadorId);
+
+        // Escuchar actualizaciones en tiempo real
+        socket.on('actualizarMarcador', (marcador) => {
+            const marcadorElement = document.querySelector('.marcador');
+            const localElement = document.querySelector('.local');
+            const visitaElement = document.querySelector('.visita');
+
+            if (!marcador.estado) {
+                marcadorElement.style.display = 'none';
+            } else {
+                marcadorElement.style.display = 'flex';
+            }
+
+            // Agregar o quitar la clase 'invert'
+            if (marcador.invert) {
+                if (!marcadorElement.classList.contains('invert')) {
+                    marcadorElement.classList.add('invert');
+
+                    marcadorElement.classList.remove('animated-change');
+                    void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
+                    marcadorElement.classList.add('animated-change');
+                }
+            } else {
+
+                if (marcadorElement.classList.contains('invert')) {
+
+                    marcadorElement.classList.remove('invert');
+
+                    marcadorElement.classList.remove('animated-change');
+                    void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
+                    marcadorElement.classList.add('animated-change');
+                }
+            }
+
+
+
+            if (marcador.saque == "local") {
+                actualizarConAnimacionDisplay(document.querySelector('.saqueLocal').querySelector('img'), 'block');
+            } else {
+                actualizarConAnimacionDisplay(document.querySelector('.saqueLocal').querySelector('img'), 'none');
+            }
+
+            if (marcador.saque == "visit") {
+                actualizarConAnimacionDisplay(document.querySelector('.saqueVisita').querySelector('img'), 'block');
+            } else {
+                actualizarConAnimacionDisplay(document.querySelector('.saqueVisita').querySelector('img'), 'none');
+            }
+
+            const equipoLocalElement = document.querySelector('.equipoLocal');
+            const equipoVisitaElement = document.querySelector('.equipoVisita');
+
+            actualizarConAnimacionTextContent(equipoLocalElement, marcador.equipoLocal ? marcador.equipoLocal : "");
+
+            actualizarConAnimacionTextContent(equipoVisitaElement, marcador.equipoVisita ? marcador.equipoVisita : "");
+
+            actualizarConAnimacionTextContent(document.querySelector('.puntosLocal').querySelector('label'), marcador.puntosLocal || '0');
+            actualizarConAnimacionTextContent(document.querySelector('.setsLocal').querySelector('label'), marcador.setsLocal || '0');
+            actualizarConAnimacionTextContent(document.querySelector('.setsVisita').querySelector('label'), marcador.setsVisita || '0');
+            actualizarConAnimacionTextContent(document.querySelector('.puntosVisita').querySelector('label'), marcador.puntosVisita || '0');
+
+
+
+            if (marcador.winLocal) {
+                        document.querySelector('.puntosLocal').querySelector('label').classList.add('win');
+                        document.querySelector('.puntosLocal').querySelector('p').classList.add('win');
+                    } else {
+                        document.querySelector('.puntosLocal').querySelector('label').classList.remove('win');
+                        document.querySelector('.puntosLocal').querySelector('p').classList.remove('win');
+                    }
+
+                    if (marcador.winVisita) {
+                        document.querySelector('.puntosVisita').querySelector('label').classList.add('win');
+                        document.querySelector('.puntosVisita').querySelector('p').classList.add('win');
+                    } else {
+                        document.querySelector('.puntosVisita').querySelector('label').classList.remove('win');
+                        document.querySelector('.puntosVisita').querySelector('p').classList.remove('win');
+                    }
+
+            function actualizarConAnimacionTextContent(elemento, nuevoValor) {
+                // Solo actualiza si el valor ha cambiado
+                if (elemento.textContent != nuevoValor) {
+                    elemento.classList.remove('animated-change'); // Remueve la clase para reiniciar la animación
+                    void elemento.offsetWidth; // Forzar reflujo para reiniciar la animación
+                    elemento.textContent = nuevoValor; // Actualiza el contenido
+                    elemento.classList.add('animated-change'); // Agrega la clase para aplicar la animación
+                }
+            }
+            function actualizarConAnimacionDisplay(elemento, nuevoValor) {
+                // Solo actualiza si el valor ha cambiado
+                if (elemento.style.display !== nuevoValor) {
+                    elemento.classList.remove('animated-change'); // Remueve la clase para reiniciar la animación
+                    
+                    void elemento.offsetWidth; // Forzar reflujo para reiniciar la animación
+                    elemento.style.display = nuevoValor; // Actualiza el contenido
+                    elemento.classList.add('animated-change'); // Agrega la clase para aplicar la animación
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
