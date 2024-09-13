@@ -69,6 +69,10 @@ io.on('connection', (socket) => {
     }
   });
 
+  router.use((req, res) => {
+    res.status(404).send('Página no encontrada');
+  });
+
   function generateUniqueId() {
     return Date.now()+"";
   }
