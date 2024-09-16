@@ -33,18 +33,19 @@ body {
     max-width: 85%;
 }
 
-.container{
+.container {
     position: relative;
 }
 
-.logo{
+.logo {
 
-    display:none;
+    display: none;
     position: absolute;
     top: calc(((100% - 30px)/ 2));
     left: calc(((100% - 30px)/ 2));
     z-index: 2;
-    img{
+
+    img {
         width: 30px;
     }
 }
@@ -57,10 +58,10 @@ body {
     /* Centra la imagen en el contenedor */
     background-repeat: no-repeat;
     /* Evita que la imagen se repita */
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .win {
@@ -93,11 +94,10 @@ body {
     flex-direction: row;
     align-items: center;
     width: 49%;
-    padding-top: 5px;
     box-sizing: border-box;
 
 
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: rgba(0, 0, 0, .85);
 }
 
@@ -105,13 +105,14 @@ body {
 .local {
     order: 0;
     justify-content: start;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 
     .saqueLocal {
         order: 0;
         width: 10%;
         padding-bottom: 5px;
+        padding-top: 5px;
     }
 
     .equipoLocal {
@@ -119,6 +120,7 @@ body {
         text-align: start;
         width: 60%;
         padding-bottom: 5px;
+        padding-top: 5px;
     }
 
     .puntosLocal {
@@ -126,6 +128,9 @@ body {
         text-align: center;
         width: 15%;
         position: relative;
+        label{
+            font-size: x-large;
+        }
     }
 
     .setsLocal {
@@ -133,19 +138,21 @@ body {
         order: 2;
         width: 15%;
         position: relative;
+        margin-top: 8px;
     }
 }
 
 .visita {
     order: 1;
     justify-content: end;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     .saqueVisita {
         order: 3;
         width: 10%;
         padding-bottom: 5px;
+        padding-top: 5px;
     }
 
     .equipoVisita {
@@ -153,6 +160,7 @@ body {
         width: 60%;
         text-align: end;
         padding-bottom: 5px;
+        padding-top: 5px;
     }
 
     .puntosVisita {
@@ -160,6 +168,9 @@ body {
         text-align: center;
         width: 15%;
         position: relative;
+        label{
+            font-size: x-large;
+        }
     }
 
     .setsVisita {
@@ -167,6 +178,7 @@ body {
         text-align: center;
         width: 15%;
         position: relative;
+        margin-top: 8px;
     }
 }
 
@@ -174,8 +186,8 @@ body {
     order: 1;
     justify-content: end;
 
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     .saqueLocal {
         order: 3;
@@ -199,8 +211,8 @@ body {
     order: 0;
     justify-content: start;
 
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 
     .saqueVisita {
         order: 0;
@@ -249,6 +261,7 @@ body {
     .local {
         order: 0;
         margin-bottom: 5px;
+
         .saqueLocal {
             order: 0;
         }
@@ -309,8 +322,7 @@ body {
         }
     }
 
-    .invert 
-    .visita {
+    .invert .visita {
         order: 1;
 
         .saqueVisita {
@@ -331,19 +343,22 @@ body {
         }
     }
 }
+
 .modo3 {
 
     padding: 10px;
 
-    .logo{
+    .logo {
         position: absolute;
         top: calc(((100% - 10vw)/ 2));
         left: calc(((100% - 10vw)/ 2));
         z-index: 2;
-        img{
+
+        img {
             width: 10vw;
         }
     }
+
     .marcador {
         font-weight: bold;
     }
@@ -362,6 +377,7 @@ body {
 
     .local {
         order: 0;
+
         .saqueLocal {
             position: absolute;
             top: 10px;
@@ -380,7 +396,15 @@ body {
         .puntosLocal {
             width: 100%;
             font-size: 30vw;
-            .titulo{
+
+            padding-bottom: 0px;padding-top: 20px;
+            label{
+                position: relative;
+                font-size: 30vw;
+                top:unset;
+            }
+
+            .titulo {
                 display: none;
             }
         }
@@ -409,12 +433,20 @@ body {
             text-align: center;
             width: 100%;
             font-size: 4vw;
+            padding-bottom: 0px;
         }
 
         .puntosVisita {
             width: 100%;
             font-size: 30vw;
-            .titulo{
+            padding-bottom: 0px;padding-top: 20px;
+            label{
+                position: relative;
+                font-size: 30vw;
+                top:unset;
+            }
+
+            .titulo {
                 display: none;
             }
         }
@@ -427,38 +459,39 @@ body {
         }
     }
 
-    .invert .local {
+    .invert,
+    .local {
+        order: 1;
 
         .saqueLocal {
-            right: 10px;
+            right: 10px !important;
+            left: unset;
         }
 
-        .equipoLocal {
-        }
+        .equipoLocal {}
 
-        .puntosLocal {
-        }
+        .puntosLocal {}
 
         .setsLocal {
             left: 1vw;
         }
     }
 
-    .invert 
+    .invert,
     .visita {
+        order: 0;
 
         .saqueVisita {
             left: 10px;
         }
 
-        .equipoVisita {
-        }
+        .equipoVisita {}
 
-        .puntosVisita {
-        }
+        .puntosVisita {}
 
         .setsVisita {
             right: 1vw;
+            left: unset;
         }
     }
 }

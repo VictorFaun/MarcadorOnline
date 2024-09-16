@@ -13,7 +13,7 @@
         <div class="container">
 
             <div class="logo">
-                <img src="http://192.168.1.83:3000/Logo_Trawen.png" />
+                <img src="https://marcadoronline.onrender.com/Logo_Trawen.png" />
             </div>
 
             <div class="marcador">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="equipoLocal"></div>
                     <div class="puntosLocal"><label></label>
-                        <p class='titulo'>PUNTOS</p>
+                        <!-- <p class='titulo'>PUNTOS</p> -->
                     </div>
                     <div class="setsLocal"><label></label>
                         <p class='titulo'>SETS</p>
@@ -37,7 +37,7 @@
                         <p class='titulo'>SETS</p>
                     </div>
                     <div class="puntosVisita"><label></label>
-                        <p class='titulo'>PUNTOS</p>
+                        <!-- <p class='titulo'>PUNTOS</p> -->
                     </div>
                     <div class="equipoVisita"></div>
                 </div>
@@ -49,15 +49,8 @@
     <script>
         const marcadorId = window.location.pathname.split('/').pop();  // Obtener el ID del marcador desde la URL
         const socket = io();  // Conectar a Socket.IO
-        let stream = false;
-        if (navigator.plugins.length > 0) {
-            // Recorre la lista de plugins
-            for (let i = 0; i < navigator.plugins.length; i++) {
-                if(navigator.plugins[i].name == 'PDF Viewer'){
-                    stream =true
-                }
-            }
-        }
+        let streamModo = true;
+
         // Unirse a la sala del marcador específico
         socket.emit('joinMarcador', marcadorId);
 
@@ -73,16 +66,39 @@
                 marcadorElement.style.display = 'flex';
             }
 
-            console.log(window)
-            if (marcador.modo == 2 && stream) {
-                document.querySelector('.container').classList.add('modo2');
-            } else {
-                document.querySelector('.container').classList.remove('modo2');
+            document.querySelector('.container').addEventListener('click', function () {
+
+                if (document.querySelector('.container').classList.contains('modo3')) {
+
+                    document.querySelector('.container').classList.add('modo2');
+                    document.querySelector('.container').classList.remove('modo3');
+                } else {
+                    if (document.querySelector('.container').classList.contains('modo2')) {
+
+                        document.querySelector('.container').classList.remove('modo2');
+                        document.querySelector('.container').classList.remove('modo3');
+                    } else {
+
+                        document.querySelector('.container').classList.add('modo3');
+                    }
+                }
+                document.querySelector('body').style.maxWidth = '100%';
+
+                marcadorElement.classList.remove('animated-change');
+                void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
+                marcadorElement.classList.add('animated-change');
+            });
+
+            if (marcador.modo == 2) {
+                if (!document.querySelector('.container').classList.contains('modo3')) {
+                    document.querySelector('.container').classList.add('modo2');
+                }
             }
 
-            if(!stream){
-                document.querySelector('.container').classList.add('modo3');
-                document.querySelector('body').style.maxWidth = '100%';
+            if (marcador.modo == 1) {
+                if (!document.querySelector('.container').classList.contains('modo3')) {
+                    document.querySelector('.container').classList.remove('modo2');
+                }
             }
 
             // Agregar o quitar la clase 'invert'
@@ -135,20 +151,20 @@
 
 
             if (marcador.winLocal) {
-                        document.querySelector('.puntosLocal').querySelector('label').classList.add('win');
-                        document.querySelector('.puntosLocal').querySelector('p').classList.add('win');
-                    } else {
-                        document.querySelector('.puntosLocal').querySelector('label').classList.remove('win');
-                        document.querySelector('.puntosLocal').querySelector('p').classList.remove('win');
-                    }
+                document.querySelector('.puntosLocal').querySelector('label').classList.add('win');
+                document.querySelector('.puntosLocal').querySelector('p').classList.add('win');
+            } else {
+                document.querySelector('.puntosLocal').querySelector('label').classList.remove('win');
+                document.querySelector('.puntosLocal').querySelector('p').classList.remove('win');
+            }
 
-                    if (marcador.winVisita) {
-                        document.querySelector('.puntosVisita').querySelector('label').classList.add('win');
-                        document.querySelector('.puntosVisita').querySelector('p').classList.add('win');
-                    } else {
-                        document.querySelector('.puntosVisita').querySelector('label').classList.remove('win');
-                        document.querySelector('.puntosVisita').querySelector('p').classList.remove('win');
-                    }
+            if (marcador.winVisita) {
+                document.querySelector('.puntosVisita').querySelector('label').classList.add('win');
+                document.querySelector('.puntosVisita').querySelector('p').classList.add('win');
+            } else {
+                document.querySelector('.puntosVisita').querySelector('label').classList.remove('win');
+                document.querySelector('.puntosVisita').querySelector('p').classList.remove('win');
+            }
 
             function actualizarConAnimacionTextContent(elemento, nuevoValor) {
                 // Solo actualiza si el valor ha cambiado
@@ -163,7 +179,7 @@
                 // Solo actualiza si el valor ha cambiado
                 if (elemento.style.display !== nuevoValor) {
                     elemento.classList.remove('animated-change'); // Remueve la clase para reiniciar la animación
-                    
+
                     void elemento.offsetWidth; // Forzar reflujo para reiniciar la animación
                     elemento.style.display = nuevoValor; // Actualiza el contenido
                     elemento.classList.add('animated-change'); // Agrega la clase para aplicar la animación
