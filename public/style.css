@@ -30,7 +30,6 @@ body {
     /* Hace el fondo del contenido del iframe transparente */
     margin: 0;
     /* Elimina el margen por defecto del body */
-    max-width: 85%;
 }
 
 .container {
@@ -346,7 +345,11 @@ body {
 
 .modo3 {
 
-    padding: 10px;
+    border-radius: 0px !important;
+
+    .container{
+        padding: 10px;
+    }
 
     .logo {
         position: absolute;
