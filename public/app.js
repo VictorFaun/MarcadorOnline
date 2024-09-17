@@ -87,9 +87,12 @@ socket.on('actualizarMarcador', (marcador) => {
         if (!marcadorElement.classList.contains('invert')) {
             marcadorElement.classList.add('invert');
 
-            marcadorElement.classList.remove('animated-change');
-            void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
-            marcadorElement.classList.add('animated-change');
+            if(!document.querySelector('.fondo').classList.contains('modo2')){
+
+                marcadorElement.classList.remove('animated-change');
+                void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
+                marcadorElement.classList.add('animated-change');
+            }
         }
     } else {
 
@@ -97,9 +100,13 @@ socket.on('actualizarMarcador', (marcador) => {
 
             marcadorElement.classList.remove('invert');
 
-            marcadorElement.classList.remove('animated-change');
-            void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
-            marcadorElement.classList.add('animated-change');
+            
+            if(!document.querySelector('.fondo').classList.contains('modo2')){
+
+                marcadorElement.classList.remove('animated-change');
+                void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
+                marcadorElement.classList.add('animated-change');
+            }
         }
     }
 
