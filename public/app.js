@@ -42,6 +42,7 @@ socket.on('actualizarMarcador', (marcador) => {
     }
 
     document.querySelector('.fondo').addEventListener('click', function () {
+        document.querySelector('.fondo').classList.add('bloqueoModo');
 
         if (document.querySelector('.fondo').classList.contains('modo3')) {
 
@@ -64,7 +65,7 @@ socket.on('actualizarMarcador', (marcador) => {
     });
 
     if (marcador.modo == 2) {
-        if (!document.querySelector('.fondo').classList.contains('modo3')) {
+        if (!document.querySelector('.fondo').classList.contains('bloqueoModo') && !document.querySelector('.fondo').classList.contains('modo2')) {
             document.querySelector('.fondo').classList.add('modo2');
             document.querySelector('.fondo').classList.remove('animated-change');
             void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
@@ -73,7 +74,7 @@ socket.on('actualizarMarcador', (marcador) => {
     }
 
     if (marcador.modo == 1) {
-        if (!document.querySelector('.fondo').classList.contains('modo3')) {
+        if (!document.querySelector('.fondo').classList.contains('bloqueoModo') && document.querySelector('.fondo').classList.contains('modo2')) {
             document.querySelector('.fondo').classList.remove('modo2');
             document.querySelector('.fondo').classList.remove('animated-change');
             void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
