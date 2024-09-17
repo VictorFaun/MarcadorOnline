@@ -55,6 +55,7 @@ socket.on('actualizarMarcador', (marcador) => {
                 document.querySelector('.fondo').classList.remove('modo3');
             } else {
 
+                document.querySelector('.fondo').classList.remove('modo2');
                 document.querySelector('.fondo').classList.add('modo3');
             }
         }
