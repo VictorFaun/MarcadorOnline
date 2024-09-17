@@ -379,7 +379,7 @@ body {
 
 
     .local {
-        order: 0;
+        order: 0 !important;
 
         .saqueLocal {
             position: absolute;
@@ -421,7 +421,7 @@ body {
     }
 
     .visita {
-        order: 1;
+        order: 1 !important;
 
         .saqueVisita {
             position: absolute;
@@ -464,7 +464,7 @@ body {
 
     .invert,
     .local {
-        order: 1;
+        order: 1 !important;
 
         .saqueLocal {
             right: 10px !important;
@@ -482,7 +482,7 @@ body {
 
     .invert,
     .visita {
-        order: 0;
+        order: 0 !important;
 
         .saqueVisita {
             left: 10px;
