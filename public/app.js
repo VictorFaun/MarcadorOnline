@@ -14,13 +14,13 @@ socket.on('actualizarMarcador', (marcador) => {
 
     function isIphone() {
         return /iPhone/i.test(navigator.userAgent);
-      }
+    }
 
-      if (isIphone()) {
+    if (isIphone()) {
         document.querySelector('body').style.maxWidth = '85%';
-      } else {
+    } else {
         document.querySelector('body').style.maxWidth = '100%';
-      }
+    }
 
     if (!marcador.estado) {
         if (document.querySelector('.fondo').style.display != 'none') {
@@ -88,7 +88,7 @@ socket.on('actualizarMarcador', (marcador) => {
         if (!marcadorElement.classList.contains('invert')) {
             marcadorElement.classList.add('invert');
 
-            if(!document.querySelector('.fondo').classList.contains('modo2')){
+            if (!document.querySelector('.fondo').classList.contains('modo2')) {
 
                 marcadorElement.classList.remove('animated-change');
                 void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
@@ -101,8 +101,8 @@ socket.on('actualizarMarcador', (marcador) => {
 
             marcadorElement.classList.remove('invert');
 
-            
-            if(!document.querySelector('.fondo').classList.contains('modo2')){
+
+            if (!document.querySelector('.fondo').classList.contains('modo2')) {
 
                 marcadorElement.classList.remove('animated-change');
                 void marcadorElement.offsetWidth; // Forzar reflujo para reiniciar la animación
@@ -141,18 +141,33 @@ socket.on('actualizarMarcador', (marcador) => {
 
     if (marcador.winLocal) {
         document.querySelector('.puntosLocal').querySelector('label').classList.add('win');
-        document.querySelector('.puntosLocal').querySelector('p').classList.add('win');
+        //document.querySelector('.puntosLocal').querySelector('p').classList.add('win');
     } else {
         document.querySelector('.puntosLocal').querySelector('label').classList.remove('win');
-        document.querySelector('.puntosLocal').querySelector('p').classList.remove('win');
+        //document.querySelector('.puntosLocal').querySelector('p').classList.remove('win');
     }
 
     if (marcador.winVisita) {
         document.querySelector('.puntosVisita').querySelector('label').classList.add('win');
-        document.querySelector('.puntosVisita').querySelector('p').classList.add('win');
+        //document.querySelector('.puntosVisita').querySelector('p').classList.add('win');
     } else {
         document.querySelector('.puntosVisita').querySelector('label').classList.remove('win');
-        document.querySelector('.puntosVisita').querySelector('p').classList.remove('win');
+        //document.querySelector('.puntosVisita').querySelector('p').classList.remove('win');
+    }
+
+    if (marcador.viewJugadorSaque) {
+        if (marcador.saque == "local") {
+            actualizarConAnimacionDisplay(document.querySelector('.jugador-local-saque'), 'block');
+            actualizarConAnimacionTextContent(document.querySelector('.jugador-local-saque'), marcador.jugadorSaque || '0');
+            actualizarConAnimacionDisplay(document.querySelector('.jugador-visita-saque'), 'none');
+        } else {
+            actualizarConAnimacionDisplay(document.querySelector('.jugador-visita-saque'), 'block');
+            actualizarConAnimacionTextContent(document.querySelector('.jugador-visita-saque'), marcador.jugadorSaque || '0');
+            actualizarConAnimacionDisplay(document.querySelector('.jugador-local-saque'), 'none');
+        }
+    } else {
+        actualizarConAnimacionDisplay(document.querySelector('.jugador-local-saque'), 'none');
+        actualizarConAnimacionDisplay(document.querySelector('.jugador-visita-saque'), 'none');
     }
 
     function actualizarConAnimacionTextContent(elemento, nuevoValor) {
