@@ -64,22 +64,24 @@ socket.on('actualizarMarcador', (marcador) => {
         void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
         document.querySelector('.fondo').classList.add('animated-change');
     });
+    if(!document.querySelector('.fondo').classList.contains('bloqueoModo')){
 
-    if (marcador.modo == 2) {
-        if (!document.querySelector('.fondo').classList.contains('bloqueoModo') && !document.querySelector('.fondo').classList.contains('modo2')) {
-            document.querySelector('.fondo').classList.add('modo2');
-            document.querySelector('.fondo').classList.remove('animated-change');
-            void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
-            document.querySelector('.fondo').classList.add('animated-change');
+        if (marcador.modo == 2) {
+            if (!document.querySelector('.fondo').classList.contains('modo2')) {
+                document.querySelector('.fondo').classList.add('modo2');
+                document.querySelector('.fondo').classList.remove('animated-change');
+                void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
+                document.querySelector('.fondo').classList.add('animated-change');
+            }
         }
-    }
-
-    if (marcador.modo == 1) {
-        if (!document.querySelector('.fondo').classList.contains('bloqueoModo') && document.querySelector('.fondo').classList.contains('modo2')) {
-            document.querySelector('.fondo').classList.remove('modo2');
-            document.querySelector('.fondo').classList.remove('animated-change');
-            void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
-            document.querySelector('.fondo').classList.add('animated-change');
+    
+        if (marcador.modo == 1) {
+            if (document.querySelector('.fondo').classList.contains('modo2')) {
+                document.querySelector('.fondo').classList.remove('modo2');
+                document.querySelector('.fondo').classList.remove('animated-change');
+                void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
+                document.querySelector('.fondo').classList.add('animated-change');
+            }
         }
     }
 
