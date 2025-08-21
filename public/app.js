@@ -69,6 +69,7 @@ socket.on('actualizarMarcador', (marcador) => {
         if (marcador.modo == 2) {
             if (!document.querySelector('.fondo').classList.contains('modo2')) {
                 document.querySelector('.fondo').classList.add('modo2');
+                document.querySelector('.fondo').classList.remove('modo3');
                 document.querySelector('.fondo').classList.remove('animated-change');
                 void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
                 document.querySelector('.fondo').classList.add('animated-change');
@@ -76,7 +77,18 @@ socket.on('actualizarMarcador', (marcador) => {
         }
     
         if (marcador.modo == 1) {
-            if (document.querySelector('.fondo').classList.contains('modo2')) {
+            if (document.querySelector('.fondo').classList.contains('modo2') || document.querySelector('.fondo').classList.contains('modo3')) {
+                document.querySelector('.fondo').classList.remove('modo2');
+                document.querySelector('.fondo').classList.remove('modo3');
+                document.querySelector('.fondo').classList.remove('animated-change');
+                void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
+                document.querySelector('.fondo').classList.add('animated-change');
+            }
+        }
+
+        if (marcador.modo == 3) {
+            if (!document.querySelector('.fondo').classList.contains('modo3')) {
+                document.querySelector('.fondo').classList.add('modo3');
                 document.querySelector('.fondo').classList.remove('modo2');
                 document.querySelector('.fondo').classList.remove('animated-change');
                 void document.querySelector('.fondo').offsetWidth; // Forzar reflujo para reiniciar la animación
