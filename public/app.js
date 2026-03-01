@@ -16,11 +16,11 @@ socket.on('actualizarMarcador', (marcador) => {
         return /iPhone/i.test(navigator.userAgent);
     }
 
-    if (isIphone()) {
-        document.querySelector('body').style.maxWidth = '85%';
-    } else {
-        document.querySelector('body').style.maxWidth = '100%';
-    }
+    // if (isIphone()) {
+    //     document.querySelector('body').style.maxWidth = '85%';
+    // } else {
+    //     document.querySelector('body').style.maxWidth = '100%';
+    // }
 
     if (!marcador.estado) {
         if (document.querySelector('.fondo').style.display != 'none') {
