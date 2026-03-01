@@ -29,7 +29,7 @@ body {
     background: transparent;
     /* Hace el fondo del contenido del iframe transparente */
     margin: 0;
-    width: 1200px;
+    width: 800px;
     /* Elimina el margen por defecto del body */
 }
 
@@ -59,10 +59,10 @@ body {
     background-repeat: no-repeat;
     /* Evita que la imagen se repita */
     border-radius: 15px;
-    padding: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-    height: 195px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 130px;
 
     display: none;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .balon {
-    width: 60px;
+    width: 40px;
 }
 
 .marcador {
@@ -80,12 +80,12 @@ body {
     justify-content: space-between;
     width: 100%;
     margin: 0 auto;
-    font-size: 70px;
+    font-size: 50px;
 }
 
 .titulo {
     position: absolute;
-    top: -3px;
+    top: 0px;
     width: 100%;
     text-align: center;
     font-size: 12px !important;
@@ -148,7 +148,7 @@ body {
         width: 15%;
         position: relative;
         label{
-            font-size: 70px;
+            font-size: 50px;
         }
     }
 
@@ -158,6 +158,9 @@ body {
         width: 15%;
         position: relative;
         margin-top: 8px;
+        label{
+            font-size: 40px;
+        }
     }
 }
 
@@ -201,7 +204,7 @@ body {
         width: 15%;
         position: relative;
         label{
-            font-size: 70px;
+            font-size: 50px;
         }
     }
 
@@ -211,6 +214,10 @@ body {
         width: 15%;
         position: relative;
         margin-top: 8px;
+
+        label{
+            font-size: 40px;
+        }
     }
 }
 
@@ -292,7 +299,7 @@ body {
 
     .local {
         order: 0;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
 
         .saqueLocal {
             order: 0;
